@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Advanced JS Calculator</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .calc-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 320px; }
+        h2 { color: royalblue; margin-bottom: 20px; }
+        input { width: 80%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; text-align: center; }
+        .btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        button { padding: 10px; font-size: 18px; cursor: pointer; border: none; border-radius: 5px; background-color: royalblue; color: white; transition: 0.3s; }
+        button:hover { background-color: #3f51b5; transform: scale(1.05); }
+        #result-display { margin-top: 20px; font-size: 20px; font-weight: bold; color: #333; min-height: 30px; }
+    </style>
+</head>
+<body>
+
+<div class="calc-card">
+    <h2 id="title">JS Calculator</h2>
+    
+    <input type="number" id="num1" placeholder="Enter first number">
+    <input type="number" id="num2" placeholder="Enter second number">
+
+    <div class="btn-group">
+        <button onclick="calculate('+')">+</button>
+        <button onclick="calculate('-')">−</button>
+        <button onclick="calculate('*')">×</button>
+        <button onclick="calculate('/')">÷</button>
+    </div>
+
+    <p id="result-display">Result will appear here</p>
+</div>
+
+<script>
+    // 1. DOM Styling (Concept from your index.html)
+    document.getElementById("title").style.textTransform = "uppercase";
+    console.log("Advanced Calculator Ready!");
+
+    function calculate(operator) {
+        // 2. Variables (Concept from your index2.html)
+        // We use parseFloat to convert text input into numbers
+        var n1 = parseFloat(document.getElementById("num1").value);
+        var n2 = parseFloat(document.getElementById("num2").value);
+        var result;
+
+        // Validation: Check if inputs are empty
+        if (isNaN(n1) || isNaN(n2)) {
+            document.getElementById("result-display").innerHTML = "Please enter numbers!";
+            return;
+        }
+
+        // 3. Statements & Logic (Concept from your index3.html)
+        if (operator === '+') {
+            result = n1 + n2;
+        } else if (operator === '-') {
+            result = n1 - n2;
+        } else if (operator === '*') {
+            result = n1 * n2;
+        } else if (operator === '/') {
+            result = n2 !== 0 ? (n1 / n2) : "Error (Div by 0)";
+        }
+
+        // Output the result to the screen
+        document.getElementById("result-display").innerHTML = "Total: " + result;
+        
+        // Dynamic feedback: change color based on the result
+        if (result < 0) {
+            document.getElementById("result-display").style.color = "red";
+        } else {
+            document.getElementById("result-display").style.color = "green";
+        }
+    }
+</script>
+
+</body>
+</html>
